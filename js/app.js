@@ -4,7 +4,9 @@ function render() {
   var $app = $("#app");
   $app.empty();
 
+  var $formElement = createForm();
   var $itemsElement = createItems(items);
+    $app.append($formElement);
   $app.append($itemsElement);
 }
 
@@ -29,5 +31,23 @@ function removeItem(itemId) {
   render();
   setTimeout(function () {
     alert("Item Deleted Successfully!");
+  }, 0);
+}
+
+function generateId() {
+  return Date.now().toString(36) + Math.random().toString(36).substr(2);
+}
+
+
+function addItem(itemName) {
+  var newItem = {
+    name: itemName,
+    completed: false,
+    id: generateId(),
+  };
+  items.push(newItem);
+  render();
+  setTimeout(function () {
+    alert("Item Added Successfully!");
   }, 0);
 }
